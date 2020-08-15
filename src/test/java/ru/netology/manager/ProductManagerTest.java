@@ -10,7 +10,6 @@ import ru.netology.repository.ProductRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductManagerTest {
-
     private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
     private Book first = new Book(1, "Таинственный остров", 500, "Жюль Верн");
