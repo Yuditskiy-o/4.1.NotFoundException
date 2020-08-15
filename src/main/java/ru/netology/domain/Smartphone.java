@@ -21,5 +21,4 @@ public class Smartphone extends Product {
             return true;
         return false;
     }
-
 }
