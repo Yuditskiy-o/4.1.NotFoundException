@@ -14,6 +14,7 @@ class ProductManagerTest {
     private ProductManager manager = new ProductManager(repository);
     private Book first = new Book(1, "Таинственный остров", 500, "Жюль Верн");
     private Book second = new Book(2, "Властелин колец", 600, "Дж. Р. Р. Толкиен");
+    private Book third = new Book(3, "Властелин колец: Две крепости", 700, "Дж. Р. Р. Толкиен");
     private Smartphone smartphone1 = new Smartphone(1, "Xiaomi", 7500, "Китай");
     private Smartphone smartphone2 = new Smartphone(2, "Apple", 20000, "Тайвань");
 
@@ -27,7 +28,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldSearchBookByNameIfExists() {
+    public void shouldSearchBookByNameIfExists() {
         String text = "Таинственный остров";
 
         Product[] expected = new Product[]{first};
@@ -36,7 +37,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldNotSearchBookByNameIfNotExists() {
+    public void shouldNotSearchBookByNameIfNotExists() {
         String text = "Одиссея капитана Блада";
 
         Product[] expected = new Product[]{};
@@ -45,7 +46,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldSearchBookByAuthorIfExists() {
+    public void shouldSearchBookByAuthorIfExists() {
         String text = "Дж. Р. Р. Толкиен";
 
         Product[] expected = new Product[]{second};
@@ -54,7 +55,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldNotSearchBookByAuthorIfNotExists() {
+    public void shouldNotSearchBookByAuthorIfNotExists() {
         String text = "Рафаэль Сабатини";
 
         Book[] expected = new Book[]{};
@@ -63,7 +64,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldSearchSmartphoneByNameIfExists() {
+    public void shouldSearchSmartphoneByNameIfExists() {
         String text = "Apple";
 
         Product[] expected = new Product[]{smartphone2};
@@ -72,7 +73,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldNotSearchSmartphoneByNameIfNotExists() {
+    public void shouldNotSearchSmartphoneByNameIfNotExists() {
         String text = "Lenovo";
 
         Product[] expected = new Product[]{};
@@ -81,7 +82,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldSearchSmartphoneByManufacturerIfExists() {
+    public void shouldSearchSmartphoneByManufacturerIfExists() {
         String text = "Тайвань";
 
         Product[] expected = new Product[]{smartphone2};
@@ -90,10 +91,20 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldNotSearchSmartphoneByManufacturerIfExists() {
+    public void shouldNotSearchSmartphoneByManufacturerIfExists() {
         String text = "Россия";
 
-        Book[] expected = new Book[]{};
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy(text);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchProductsWithSameAuthor() {
+        manager.productAdd(third);
+        String text = "Дж. Р. Р. Толкиен";
+
+        Product[] expected = new Product[]{second, third};
         Product[] actual = manager.searchBy(text);
         assertArrayEquals(expected, actual);
     }
