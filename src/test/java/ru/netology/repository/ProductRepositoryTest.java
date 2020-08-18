@@ -30,7 +30,7 @@ class ProductRepositoryTest {
 
     @Test
     public void shouldReturnNullIfNotExists() {
-        int removeId = 4;
+        int removeId = 3;
         repository.findById(removeId);
         Product expected = null;
         Product actual = repository.findById(removeId);
@@ -39,7 +39,7 @@ class ProductRepositoryTest {
 
     @Test
     public void shouldNotRemoveByIdIfNotExist() {
-        int requestedId = 4;
-        assertThrows(NotFoundException.class, () -> repository.removeById(requestedId));
+        int removeId = 3;
+        assertThrows(NotFoundException.class, () -> repository.removeById(removeId));
     }
 }
