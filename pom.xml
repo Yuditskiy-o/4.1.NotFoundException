@@ -76,6 +76,9 @@
                             </limits>
                         </rule>
                     </rules>
+                    <excludes>
+                            <exclude>ru/netology/exception/*</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
