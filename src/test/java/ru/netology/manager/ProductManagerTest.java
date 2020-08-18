@@ -58,7 +58,7 @@ class ProductManagerTest {
     public void shouldNotSearchBookByAuthorIfNotExists() {
         String text = "Рафаэль Сабатини";
 
-        Book[] expected = new Book[]{};
+        Product[] expected = new Product[]{};
         Product[] actual = manager.searchBy(text);
         assertArrayEquals(expected, actual);
     }
